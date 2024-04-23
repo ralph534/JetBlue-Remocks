@@ -75,7 +75,7 @@ function Header() {
                         <span className="sr-only">JetBlue.com</span>
                         <Image width={90} height={50} src={jetVacation} alt="logo"/>
                     </Link>
-                    <Link href="/" className="-m-1.5 p-2 bg-[purple]">
+                    <Link href="/" className="-m-1.5 p-2">
                         <span className="sr-only">JetBlue.com</span>
                         <Image width={60} height={50} src={piaslyLogo} alt="logo"/>
                     </Link>
@@ -99,8 +99,8 @@ function Header() {
                 </div>
                 <Popover.Group className="hidden lg:flex lg:gap-x-12">
                     <Popover className="relative">
-                        <Popover.Button className="flex item-center gap-x-1 text-sm font-semibold leading-8 text-white mr-[150px]">
-                            Flight
+                        <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-8 text-white mr-[150px]">
+                            Book
                             <ChevronDownIcon 
                             className="h-5 w-5 flex text-white" aria-hidden="true"/>
                         </Popover.Button>
@@ -132,8 +132,20 @@ function Header() {
                                                 {item.description}
                                             </p>
                                         </div>
-
                                         </div>
+                                    ))}
+                                </div>
+                                <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
+                                    {callToAction.map((item) => (
+                                        <a
+                                        key={item.name}
+                                        href={item.href}
+                                        className="flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6
+                                        hover:bg-gray-100">
+                                        <item.icon
+                                            className="h-5 w-5 flex-none" aria-hidden="true" />
+                                            {item.name}
+                                        </a>
                                     ))}
                                 </div>
 
@@ -141,8 +153,42 @@ function Header() {
 
                             </Transition>
                     </Popover>
+                    <a href="#" className="text-sm font-semibold leading-6 text-white  
+                    border-b-4 border-transparent hover:border-orange-500 transition-colors">
+                        Manage Trips
+                    </a>
+                    <a href="#" className="text-sm font-semibold leading-6 text-white  
+                    border-b-4 border-transparent hover:border-orange-500 transition-colors">
+                        Check-In
+                    </a>
+                    <a href="#" className="text-sm font-semibold leading-6 text-white 
+                    border-b-4 border-transparent hover:border-orange-500 transition-colors">
+                        Travel Info
+                    </a>
                 </Popover.Group>
+                <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+                    <a href="#" className="text-sm font-semibold leading-6 text-white">
+                        Log in <span aria-hidden="true"></span>
+                    </a>
+                </div>
             </nav>
+            <Dialog
+            as="div"
+            className="lg:hidden"
+            open={mobileMenuOpen}
+            onClose={setMobileMenuOpen}>
+                <div className="fixed inset-0 z-10" />
+                <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white
+                px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+                    <div className="flex items-center justify-between">
+                        <a href="#" className="-m-1.5 p-1.5">
+                            <span className="sr-only">Your Compnay</span>
+                            <Image className="h-8 w-auto"
+                            src={logo} alt="logo"/>
+                        </a>
+                    </div>
+                </Dialog.Panel>
+            </Dialog>
         </header>    
     </>
   )
