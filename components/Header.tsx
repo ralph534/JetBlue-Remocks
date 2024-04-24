@@ -12,6 +12,7 @@ import { headContainerAnimation, headContentAnimation, headTextAnimation, slideA
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { Dialog, Disclosure, Popover, Transition } from '@headlessui/react';
 import { ChatBubbleLeftIcon, ChevronDownIcon, HomeIcon, PaperAirplaneIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid';
+import { cn } from '@/lib/utils';
 
 
 
@@ -66,7 +67,8 @@ function Header() {
     <>
         <header className="bg-white h-12">
             <nav className="mx-auto flex max-w-full items-center p-1 h-12 lg:px-8" aria-label="Global">
-                <div className="flex lg:flex-1 items-center justify-between">
+            
+                <MotionDiv {...slideAnimation("left")}className="flex lg:flex-1 items-center justify-between">
                     <Link href="/" className="-m-1.5 p-2">
                         <span className="sr-only">JetBlue.com</span>
                         <Image width={60} height={50} src={logo} alt="logo"/>
@@ -79,7 +81,7 @@ function Header() {
                         <span className="sr-only">JetBlue.com</span>
                         <Image width={60} height={50} src={piaslyLogo} alt="logo"/>
                     </Link>
-                </div>
+                </MotionDiv>
             </nav>
         </header>
         <header className="bg-[#01205B] h-12">
@@ -186,6 +188,71 @@ function Header() {
                             <Image className="h-8 w-auto"
                             src={logo} alt="logo"/>
                         </a>
+                        <button
+                            type="button"
+                            className="-m-2.5 rounded-md p-2.5 text-black"
+                            onClick={() => setMobileMenuOpen(false)}>
+                            <span className="sr-only">Close Menu</span>
+                            <XMarkIcon className="h-6 w-6" aria-hidden="true"/>
+                        </button>
+                    </div>
+
+                    <div className="mt-6 flow-root">
+                        <div className="-my-6 divide-y divide-gray-500/10">
+                            <div className="space-y-2 py-6">
+                                <Disclosure as="div" className="-mx-3">
+                                    {({open}) => (
+                                        <>
+                                        <Disclosure.Button className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5
+                                        text-base font-semibold leading-7 text-black hover:bg-blue-800">
+                                            Stay
+                                            <ChevronDownIcon
+                                            className={cn(
+                                                open ? "rotate-180" : "",
+                                                "h-5 w-5 flex-none" 
+                                            )} aria-hidden="true"/>
+                                        </Disclosure.Button>
+                                        <Disclosure.Panel className="mt-2 space-y-2">
+                                            {[...products, ...callToAction].map((item) => (
+                                                <Disclosure.Button 
+                                                key={item.name}
+                                                as="a"
+                                                href={item.href}
+                                                className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7
+                                                text-black hover:bg-blue-800"
+                                                >
+                                                    {item.name}
+                                                </Disclosure.Button>
+                                            ))}
+                                        </Disclosure.Panel>
+                                        </>
+                                    )}
+                                </Disclosure>
+                                <a href="#" className="-m-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-black
+                                hover:bg-blue-800">
+                                    Flight
+                                </a>
+                                <a href="#" className="-m-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-black
+                                hover:bg-blue-800">
+                                    Car Rental
+                                </a>
+                                <a href="#" className="-m-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-black
+                                hover:bg-blue-800">
+                                    Attraction
+                                </a>
+                                <a href="#" className="-m-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-black
+                                hover:bg-blue-800">
+                                    Flight + Hotel
+                                </a>
+                            </div>
+                        </div>
+                        <div className="space-y-2 py-6">
+                            <a href="#"
+                            className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-black hover:bg-blue-800">
+                                Log In
+                            </a>
+                        </div>
+
                     </div>
                 </Dialog.Panel>
             </Dialog>
@@ -194,47 +261,5 @@ function Header() {
   )
 }
 
-
-{/* <MotionDiv {...slideAnimation("left")}
-         className="Top Nav mx-auto flex max-w-full items-center p-1 h-14 lg:px-8 justify-between">
-            <Link href="/" className="-m-1.5 p-2">
-                <span className="sr-only">JetBlue.com</span>
-                <Image width={60} height={50} src={logo} alt="logo"/>
-            </Link>
-            <Link href="/" className="-m-1.5 p-2">
-                <span className="sr-only">JetBlue.com</span>
-                <Image width={90} height={50} src={jetVacation} alt="logo"/>
-            </Link>
-            <Link href="/" className="-m-1.5 p-2">
-                <span className="sr-only">JetBlue.com</span>
-                <Image width={60} height={50} src={piaslyLogo} alt="logo"/>
-            </Link>
-        </MotionDiv>
-    </header>
-    <div className="Botton Nav bg-[#01205B] mx-auto flex max-w-full items-center p-1 h-14 lg:px-8 bg-[purple]">
-        <div className="Left Nav flex w-full lg:flex-1 pl-20">
-                <Link href="/" className="bg-[green]">
-                    <Image src={jetbluewhite} alt="whitelogo" className="w-[150px] ml-[240px] bg-[red]" />
-                </Link>
-            <MotionDiv>
-                <div className="flex lg:hidden">
-                    <button type="button" className="-m-2.5 inline-flex item-center justify-center rounded-md p-8 text-white" 
-                    onClick={() => setMobileMenuOpen(true)}>
-                        <span className="sr-only">Open main menu</span>
-                        <Bars3Icon className="h-6 w-6" aria-hidden="true" />
-                    </button>
-                </div>
-            </MotionDiv>
-        </div>
-        <Popover.Group className="hidden lg:flex lg:gap-x-12">
-        <Popover className="relative">
-            <Popover.Button className="flex item-center gap-x-1 text-sm font-semibold leading-8 text-white">
-                Flight
-                <ChevronDownIcon 
-                className="h-5 w-5 flex text-white" aria-hidden="true"/>
-            </Popover.Button>
-        </Popover>
-    </Popover.Group>
-    </div> */}
 
 export default Header
