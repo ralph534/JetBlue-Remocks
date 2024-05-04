@@ -2,14 +2,15 @@ import Image from "next/image";
 import background from "/public/jetBlue.jpeg"
 import booking from './booking.jsx'
 import { slideAnimation } from "@/lib/config/motion.js";
-import { MotionDiv } from "@/components/MotionDiv.tsx";
+import { MotionDiv } from "@/components/MotionDiv";
 import jetblueside from "/public/takeflightJetblue-removebg-preview.png"
 import attendent from "/public/jetblueattendant-removebg-preview.png"
 import cloud from "/public/cloudspng.png"
 import { CAlert } from '@coreui/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import  {trending_data}  from "./data/trending";
-import SearchForm from "@/components/SearchForm.tsx";
+import SearchForm from "@/components/SearchForm";
+
 
 
 export default function Home() {
@@ -51,9 +52,9 @@ export default function Home() {
             </MotionDiv>
           </MotionDiv>
           <div className="absolute flex">
-              <Image src={cloud} width={200} height={200} alt="cloud" className="relative opacity-100 inset-0 mt-[30px] w-[1250px] h-[350px] object-cover"/>
-              <Image src={cloud} width={200} height={200} alt="cloud" className="relative opacity-100 inset-0 mt-[30px] w-[1250px] h-[350px] object-cover"/>
-              <Image src={cloud} width={200} height={200} alt="cloud" className="relative opacity-100 inset-0 mt-[30px] w-[1250px] h-[350px] object-cover"/>
+              <Image src={cloud} width={200} height={200} alt="cloud" className="relative opacity-[50] inset-0 mt-[30px] w-[1250px] h-[350px] object-cover"/>
+              <Image src={cloud} width={200} height={200} alt="cloud" className="relative opacity-[50] inset-0 mt-[30px] w-[1250px] h-[350px] object-cover"/>
+              <Image src={cloud} width={200} height={200} alt="cloud" className="relative opacity-[50] inset-0 mt-[30px] w-[1250px] h-[350px] object-cover"/>
             </div>
           <div className=" absolute w-[600px] rounded-md  mt-8 flex items-center lg:px-8 p-2 bg-[#01205B] justify-between">
         <a href="#" className="text-sm font-light leading-6 text-white  
